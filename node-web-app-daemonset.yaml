@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-web-app
+  labels:
+    app: node-web-app
+spec:
+  selector:
+    matchLabels:
+      app: node-web-app
+  template:
+    metadata:
+      labels:
+        app: node-web-app
+    spec:
+      nodeSelector:
+        ssd: "true"
+      containers:
+      - name: node-web-app
+        image: jim/node-web-app:blue
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi

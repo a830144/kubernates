@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-web-app
+  template:
+    metadata:
+      annotations:
+        kubernetes.io/change-cause: "Update to blue node web app"
+      labels:
+        app: node-web-app
+        version: "2"
+    spec:
+      containers:
+      - name: node-web-app
+        image: jim/node-web-app:blue
+        imagePullPolicy: Never
